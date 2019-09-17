@@ -1,0 +1,43 @@
+.mainNavbar
+{ 
+   background-color: wheat !important;
+   padding: 0 !important;
+   padding-left: 1vW !important;
+   margin-bottom: 0 !important;
+   position: fixed;
+    width: 100%;
+}
+
+.logoImg
+{
+    padding-left: 0.5vW;
+    height: 14px;
+}
+
+ .logoImg2
+{
+    height: 30px;
+}
+/*the status container */
+.statusContainer
+{
+    margin: 0 auto;
+    width: 700px;
+}
+
+.statusContainerParent
+{
+    min-height: calc(100vh - 50px);
+    overflow: auto;
+    padding-top: 50px;
+}
+
+
+@media screen and (min-width: 576px)
+{
+    .statusContainerParent
+    {
+        max-width: 100%;
+    }
+}
+

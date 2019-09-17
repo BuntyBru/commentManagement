@@ -1,0 +1,79 @@
+
+.mainContainer
+{
+    padding: 0;
+    margin-left: 0;
+}
+
+.formPart
+{
+   
+    font-size: 12px;
+    padding: 25px;
+    height: 100vh;
+}
+
+
+.emailLabel , .passwordLabel 
+{
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Varela Round';
+    text-transform: uppercase;
+}
+
+.emailAns
+{
+    font-size: 12px;
+    font-family: 'Varela Round';
+    font-weight: 500;
+}
+
+.loginHead
+{
+    height: 14px;
+}
+
+.loginHeadParent
+{
+    background:white !important;
+    margin-bottom:10px;
+}
+
+.frgtPass, .rememMe
+{
+    font-size: 0.86vW;
+    font-family: 'Varela Round';
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.signInBtn
+{
+  background: #003ca1 !important;
+  font-family: 'Varela Round' !important;
+  font-weight: 600;
+  border-color: #003ca1 !important;
+  color: white !important;
+}
+
+.sideImage
+{
+    background:aquamarine;
+   
+}
+
+
+
+
+
+@media screen and (min-width: 576px)
+{
+    .mainContainer
+    
+    {
+        max-width: 98%;
+    }
+}
+
+
