@@ -6,6 +6,7 @@
    margin-bottom: 0 !important;
    position: fixed;
     width: 100%;
+    z-index: 300;
 }
 
 .logoImg
@@ -16,20 +17,20 @@
 
  .logoImg2
 {
-    height: 30px;
+    height: 45px;
 }
 /*the status container */
 .statusContainer
 {
     margin: 0 auto;
-    width: 700px;
+    width: 640px;
 }
 
 .statusContainerParent
 {
     min-height: calc(100vh - 50px);
     overflow: auto;
-    padding-top: 50px;
+    padding-top: 65px;
 }
 
 

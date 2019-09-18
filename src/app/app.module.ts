@@ -11,6 +11,10 @@ import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {StatusComponent} from './main/status/status.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatIconModule} from '@angular/material/icon'
+
 
 @NgModule({
   declarations: [
@@ -26,7 +30,7 @@ import {StatusComponent} from './main/status/status.component';
     FormsModule,
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
-    MatButtonModule, MatCheckboxModule
+    MatButtonModule, MatCheckboxModule,MatCardModule,MatExpansionModule,MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent],

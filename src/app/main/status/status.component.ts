@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {BackService} from '../../back.service';
 
 @Component({
   selector: 'app-status',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatusComponent implements OnInit {
 
-  constructor() { }
+  constructor(private backService:BackService) { }
 
   ngOnInit() {
   }

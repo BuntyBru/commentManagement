@@ -1,0 +1,41 @@
+.statusCard
+{
+    font-family: 'Varela Round';
+    
+   margin-bottom: 40px;
+   min-width: 100%;
+}
+
+.statusTitle
+{
+    font-weight: 600;
+    margin-bottom: 25px;
+    
+}
+
+.controlClass
+{
+    display: flex;
+}
+
+.statusImg
+{
+    max-width: 100%;
+}
+.likeDislikeCounter
+{
+    background: #F7F8FA;
+    padding: 0;
+    
+}
+
+.likeBtn ,.dislikeBtn,.commentBtn
+{
+      
+    color: grey;
+}
+
+.storyClass
+{
+    font-size: 16px;
+}
