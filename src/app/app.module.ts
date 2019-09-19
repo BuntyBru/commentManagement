@@ -14,7 +14,8 @@ import {StatusComponent} from './main/status/status.component';
 import {CommentComponent} from './main/comment/comment.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import {MatTreeModule} from '@angular/material/tree';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import {MatIconModule} from '@angular/material/icon'
     FormsModule,
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
-    MatButtonModule, MatCheckboxModule,MatCardModule,MatExpansionModule,MatIconModule
+    MatButtonModule, MatCheckboxModule,MatCardModule,MatExpansionModule,MatIconModule,MatTreeModule
   ],
   providers: [],
   bootstrap: [AppComponent],

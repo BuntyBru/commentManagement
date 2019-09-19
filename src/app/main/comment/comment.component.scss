@@ -76,3 +76,25 @@
 {
     margin-bottom: 5px;
 }
+
+.example-tree-invisible {
+    display: none;
+  }
+  
+  .example-tree ul,
+  .example-tree li {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+  }
+
+  .mat-tree-node 
+  {
+      margin-bottom: 30px;
+      align-items: end;
+  }
+
+  .dropBtn
+  {
+      margin-top: 10px;
+  }

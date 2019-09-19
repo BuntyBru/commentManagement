@@ -143,6 +143,43 @@ export class BackService {
 
     }
 
+    commentListFinal =  [
+      { 
+        author:'Matt',
+        image:'assets/avatar2.svg',
+        time:'18th Sept 2019',
+        comment:'How Artistic',
+        commentChildren: [
+          {
+              
+            author:'Arun',
+            image:'assets/avatar3.svg',
+            time:'18th Sept 2019',
+            comment:'Yeah Funny',
+            commentChildren:[
+              {
+            
+                author:'Ravi',
+                image:'assets/avatar4.svg',
+                time:'19th Sept 2019',
+                comment:'Looks cool',
+                commentChildren:[]
+               }
+            ]
+          },
+        
+        ]
+      },
+      {
+            
+        author:'Joseph',
+        image:'assets/avatar5.svg',
+        time:'19th Sept 2019',
+        comment:'Ha ha , whats the name of the artist ?',
+        commentChildren:[]
+      }
+    ];
+
   login()
   {
     this.loggedIn = true;
