@@ -1,0 +1,78 @@
+.individualComment
+{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Varela Round';
+    margin-bottom: 30px;
+}
+
+.imgPart
+{
+    height: 60px;
+}
+
+.imgHolder
+{
+    flex:1;
+    
+}
+.details
+{
+    flex:6;
+    margin-left: 20px;
+}
+
+.nameComment
+{
+    font-size: 19px;
+    font-weight: 600;
+
+}
+
+.timeComment
+{
+    font-size: 17px;
+    color: gray;
+    margin-left: 20px;
+}
+
+.mainComment
+{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.buttonReply
+{
+    padding-left: 0;
+    padding-right: 10px;
+    min-width: 17px;
+    color: grey;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.commentMain
+{
+    font-size: 16px;
+    font-family: 'Varela Round';
+}
+
+.likeBtn ,.dislikeBtn,.commentBtn
+{
+      
+    color: grey;
+}
+
+
+.timePart
+{
+    font-size: 14px;
+    color: grey;
+    margin-left: 20px;
+}
+
+.firstLine
+{
+    margin-bottom: 5px;
+}

@@ -11,6 +11,7 @@ import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {StatusComponent} from './main/status/status.component';
+import {CommentComponent} from './main/comment/comment.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon'
@@ -21,7 +22,8 @@ import {MatIconModule} from '@angular/material/icon'
     AppComponent,
     MainComponent,
     LoginComponent,
-    StatusComponent
+    StatusComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

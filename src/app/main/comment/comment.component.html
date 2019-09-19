@@ -1,0 +1,29 @@
+<div class="row individualComment" *ngFor = 'let key of backService.commentListShow[id]; index as i'>
+        <div class="media">
+                <img class="d-flex mr-3 imgPart" src={{key.image}} alt="Generic placeholder image">
+                <div class="media-body">
+                  <p class="mt-0 font-weight-bold firstLine"> {{key.author}} <span class="timePart"> {{key.time}} </span></p> 
+                  <div class="commentMain">
+                        {{key.comment}}
+
+                        <div class="buttonPart">
+                                <button mat-button class="likeBtn">
+                                        <i class="material-icons">
+                                        thumb_up
+                                        </i>
+                                </button>
+                                <button mat-button class="dislikeBtn">
+                                        <i class="material-icons">
+                                        thumb_down
+                                        </i>
+                                </button>
+                                <button mat-flat-button class="commentBtn">
+                                        Reply
+                                </button>
+                        </div>
+                    </div>
+
+                    
+                </div>
+              </div>
+</div>
