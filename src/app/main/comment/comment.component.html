@@ -1,40 +1,15 @@
-<!--<div class="row individualComment" *ngFor = 'let key of backService.commentListShow[id]; index as i'>
-        <div class="media">
-                <img class="d-flex mr-3 imgPart" src={{key.image}} alt="Generic placeholder image">
-                <div class="media-body">
-                  <p class="mt-0 font-weight-bold firstLine"> {{key.author}} <span class="timePart"> {{key.time}} </span></p> 
-                  <div class="commentMain">
-                        {{key.comment}}
+<div>
+                
+                                <textarea class="mainComment" (keyup.enter) = "commentData(id,commentPart)" [(ngModel)]='str[id]' placeholder="Leave a comment" name='comment'></textarea>
+              
 
-                        <div class="buttonPart">
-                                <button mat-button class="likeBtn">
-                                        <i class="material-icons">
-                                        thumb_up
-                                        </i>
-                                </button>
-                                <button mat-button class="dislikeBtn">
-                                        <i class="material-icons">
-                                        thumb_down
-                                        </i>
-                                </button>
-                                <button mat-flat-button class="commentBtn" (click)="reply(key)">
-                                        Reply
-                                </button>
-                        </div>
-                    </div>
-
-                    
-                </div>
-              </div>
-</div>-->
-
-
+  </div>
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
         <!-- This is the tree node template for leaf nodes -->
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-          <li class="mat-tree-node">
+          <li class="mat-tree-node commentList" >
             <!-- use a disabled button to provide padding for tree leaf -->
-            <button mat-icon-button disabled class="dropBtn"></button>
+            
             <div class="media">
                     <img class="d-flex mr-3 imgPart" src={{node.image}} alt="Generic placeholder image">
                     <div class="media-body">
@@ -53,9 +28,15 @@
                                                   thumb_down
                                                   </i>
                                           </button>
-                                          <button mat-flat-button class="commentBtn" (click)="reply(key)">
-                                                  Reply
+                                          <button mat-flat-button class="commentBtn" (click)="reply(node)">
+                                                  Reply 
                                           </button>
+                                  </div>
+                                  <div *ngIf='node.isReply'>
+                                                
+                                <textarea class="replyComment"  (keyup.enter)="commentData(node.id,node)"  placeholder="Leave a comment" [(ngModel)]='str[node.id]' name='comment'></textarea>
+                                       
+
                                   </div>
                               </div>
           
@@ -68,13 +49,9 @@
         <!-- This is the tree node template for expandable nodes -->
         <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
           <li>
+                  
             <div class="mat-tree-node">
-              <button mat-icon-button matTreeNodeToggle class="dropBtn"
-                      [attr.aria-label]="'toggle ' + node.author">
-                <mat-icon class="mat-icon-rtl-mirror">
-                  {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                </mat-icon>
-              </button>
+                        
               <div class="media">
                     <img class="d-flex mr-3 imgPart" src={{node.image}} alt="Generic placeholder image">
                     <div class="media-body">
@@ -93,12 +70,25 @@
                                                   thumb_down
                                                   </i>
                                           </button>
-                                          <button mat-flat-button class="commentBtn" (click)="reply(key)">
+                                          
+                                                 <!--- Reply-->
+                                                  <button mat-icon-button matTreeNodeToggle  class="dropBtn commentBtn"
+                                                  [attr.aria-label]="'toggle ' + node.author" (click)="reply(node)">
                                                   Reply
+                                            <!--<mat-icon class="mat-icon-rtl-mirror">
+                                              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                                            </mat-icon>-->
                                           </button>
-
+                                         
                                           
-                                          
+                                  </div>
+                                   
+                                  <div *ngIf='node.isReply'>
+                                                
+                                                
+                        <textarea class="replyComment"  (keyup.enter)="commentData(node.id,node)" placeholder="Leave a comment" [(ngModel)]='str[node.id]' name='comment' ></textarea>
+                                                            
+                                                              
                                   </div>
                               </div>
           
@@ -112,5 +102,16 @@
               <ng-container matTreeNodeOutlet></ng-container>
             </ul>
           </li>
+          
         </mat-nested-tree-node>
+        
       </mat-tree>
+
+
+      <div class="pagination">
+                <mat-paginator [length]="10"
+                [pageSize]="5"
+                [hidePageSize]="true"
+              >
+  </mat-paginator>
+      </div>

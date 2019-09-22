@@ -2,54 +2,20 @@ import { Component, OnInit,Input } from '@angular/core';
 import {BackService} from '../../back.service';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
+import { $ } from 'protractor';
 
 
-interface commentObj {
+/*interface commentObj {
   id:string
   author:string;
   image:string;
   time:string;
   comment:string;
+  
   commentChildren:commentObj[];
-}
+}*/
 
-const TREE_DATA: commentObj[] = [
-  {
-    id:'11',
-    author:'Matt',
-    image:'assets/avatar2.svg',
-    time:'18th Sept 2019',
-    comment:'How Artistic',
-    commentChildren: [
-      {
-        id:'111',
-        author:'Arun',
-        image:'assets/avatar3.svg',
-        time:'18th Sept 2019',
-        comment:'Yeah Funny',
-        commentChildren:[
-          {
-            id:'112',
-            author:'Ravi',
-            image:'assets/avatar4.svg',
-            time:'19th Sept 2019',
-            comment:'Looks cool',
-            commentChildren:[]
-           }
-        ]
-      },
-    
-    ]
-  },
-  {
-    id:'12',
-    author:'Joseph',
-    image:'assets/avatar5.svg',
-    time:'19th Sept 2019',
-    comment:'Ha ha , whats the name of the artist ?',
-    commentChildren:[]
-  }
-];
+const TREE_DATA: any[] = [];
 
 @Component({
   selector: 'app-comment',
@@ -57,22 +23,70 @@ const TREE_DATA: commentObj[] = [
   styleUrls: ['./comment.component.scss']
 })
 export class CommentComponent implements OnInit {
-  @Input() id: string;
-  treeControl = new NestedTreeControl<commentObj>(node => node.commentChildren);
-  dataSource = new MatTreeNestedDataSource<commentObj>();
-
+  @Input() id: number;
+  @Input() commentPart:any=[];
+  str:any=[];
+  treeControl = new NestedTreeControl<any>(node => node.commentChildren);
+  dataSource = new MatTreeNestedDataSource<any>();
+  commentDo:boolean=true;
+  commentX:any=[];
   constructor(private backService : BackService) {
-    this.dataSource.data = TREE_DATA;
+    
    }
 
   ngOnInit() {
-    console.log(this.id);
+    this.backService.statusList.forEach((x)=>{
+      if(x.id == this.id)
+      {
+        this.dataSource.data = x.commentChildren;
+      }
+    });
+    
   }
 
   reply(key)
   {
+    console.log('this is the id', this.id);
+    key.isReply=true;
     console.log(key);
     
   }
-  hasChild = (_: number, node: commentObj) => !!node.commentChildren && node.commentChildren.length > 0;
+  hasChild = (_: number, node: any) => !!node.commentChildren && node.commentChildren.length > 0;
+
+  commentData(id,node)
+  {
+   // console.log("Enter clicked",this.str[id],id)
+   console.log(id);
+   console.log(this.id); 
+    let obj:any = {
+      author:'Bunty',
+      image:'assets/avatar1.svg',
+      time:'21st Sept 2019',
+      comment:this.str[id],
+      id:this.backService.generateID(),
+      isReply:false,
+      commentChildren:[]
+    };
+    node.commentChildren.push(obj);
+
+    
+    let _data = this.dataSource.data;
+    this.dataSource.data = null;
+    this.dataSource.data = _data; 
+    this.str[id]='';
+   
+  }
+
+  mainComment()
+  {
+    console.log(this.commentX[this.id]);
+    console.log('Comment part', this.commentPart);
+    this.commentX[this.id]='';
+
+
+    let _data = this.dataSource.data;
+    this.dataSource.data = null;
+    this.dataSource.data = _data; 
+  }
+
 }

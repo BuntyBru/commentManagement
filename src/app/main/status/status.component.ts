@@ -11,28 +11,38 @@ export class StatusComponent implements OnInit {
   constructor(private backService:BackService) { }
   commentSection:any=[];
   commentX:any=[];
+  currentID='';
 
   ngOnInit() {
    
   }
 
   
-  comment(id)
+  comment(id,key)
   {
-    console.log(id)
+    console.log(key)
+    this.currentID = id;
     this.commentSection[id]=true;
-    this.backService.statusList.forEach((x)=>{
-      if(x.id == id)
-      {
-        console.log("this is the id", id);
-        this.backService.commentListShow[x.id]=[];
-        x.commentChildren.forEach((z)=>{
-          this.backService.commentListShow[x.id].push(this.backService.commentDict[z])
-        })
-      }
-    })
-
     console.log(this.backService.commentListShow)
+  }
+
+  mainComment(key)
+  {
+    let obj:any = {
+      author:'Bunty',
+      image:'assets/avatar1.svg',
+      time:'21st Sept 2019',
+      comment:this.commentX[this.currentID],
+      id:this.backService.generateID(),
+      isReply:false,
+      commentChildren:[]
+    };
+    key.commentChildren.push(obj)
+
+    console.log("After addition", key);
+    
+    this.commentX[this.currentID]='';
+    
   }
 
 }

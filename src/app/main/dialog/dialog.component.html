@@ -1,0 +1,67 @@
+<div class="container formContainer">
+    <div class="row">
+        <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                <mat-form-field>
+                        <mat-label>Select Status Type</mat-label>
+                        <mat-select>
+                          <mat-option *ngFor="let item of formItems" [value]="item.value" (click)="selectFormType(item)">
+                            {{item.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      
+
+        </div>
+        
+        <div class="col-lg-9 col-sm-9 col-md-9 col-xs-9 formPart">
+            
+<div *ngIf="formType == 'ns'">
+        <form #statusForm="ngForm" (ngSubmit) = "onSubmit(statusForm)" ngNativeValidate>
+                <div class="example-container">
+                        <mat-form-field>
+                          <input matInput placeholder="Heading" required ngModel name='heading'>
+                        </mat-form-field>
+                      
+                        <mat-form-field>
+                          <textarea matInput placeholder="Main Comment" required ngModel name='mainPart'></textarea>
+                        </mat-form-field>
+                      
+                                
+                    
+                      </div>
+                      <button mat-flat-button [disabled]="!statusForm.form.valid" type="submit" class="submitBtn" color="primary">Submit</button>
+        </form>
+         
+</div>
+
+<div *ngIf="formType == 'is'">
+        <form #statusForm="ngForm" (ngSubmit) = "onSubmit(statusForm)" ngNativeValidate>
+                <div class="example-container">
+                        <mat-form-field>
+                          <input matInput placeholder="Heading" required ngModel name='heading'>
+                        </mat-form-field>
+                      
+                        <mat-form-field>
+                                <input  matInput placeholder="Image Link" required ngModel name ='image_Link' (change)='preview(statusForm)'>
+                        </mat-form-field>
+                      
+                        
+                        <img [src]="statusForm.value.image_Link" height="200" *ngIf="statusForm.value.image_Link"  (error)="updateUrl($event,statusForm)">
+                              
+                    
+                      </div>
+                      <button mat-flat-button [disabled]="!statusForm.form.valid && !imageLink" type="submit" class="submitBtn" color="primary">Submit</button>
+        </form>
+        
+
+</div>
+
+
+
+            </div>
+            
+
+
+    </div>
+
+</div>

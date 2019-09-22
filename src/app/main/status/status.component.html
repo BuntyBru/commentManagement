@@ -19,13 +19,14 @@
                                 thumb_down
                                 </i>
                         </button>
-                        <button mat-flat-button class="commentBtn" (click)="comment(key.id)">
+                        <button mat-flat-button class="commentBtn" (click)="comment(key.id,key)">
                                 Comment
                         </button>
                         <mat-card class="commentSectionClass" [hidden] = "!commentSection[key.id]">
+                                       
 
                                 <div class="container">
-                                      <app-comment  [id]='key.id'></app-comment>
+                                      <app-comment  [id]='key.id' [commentPart]='key'></app-comment>
                                 </div>
 
                         </mat-card>
@@ -51,13 +52,15 @@
                                                 thumb_down
                                                 </i>
                                         </button>
-                                        <button mat-button class="commentBtn" (click)="comment(key.id)">
+                                        <button mat-button class="commentBtn" (click)="comment(key.id,key)">
                                                 Comment
                                         </button>
+
                                         <mat-card class="commentSectionClass" [hidden] = "!commentSection[key.id]">
+                                                       
 
                                                         <div class="container">
-                                                              <app-comment [id]='key.id'></app-comment>
+                                                              <app-comment [id]='key.id' [commentPart]='key'></app-comment>
                                                         </div>
                         
                                                 </mat-card>

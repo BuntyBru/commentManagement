@@ -94,7 +94,30 @@
       align-items: end;
   }
 
-  .dropBtn
+  
+
+  .mat-tree-node
   {
-      margin-top: 10px;
+      overflow: visible;
   }
+
+  .mainComment
+{
+    min-width: 100%;
+    border-radius: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 15px;
+}
+
+.replyComment
+{
+    border-radius: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.example-tree-invisible
+{
+    display: block;
+}   

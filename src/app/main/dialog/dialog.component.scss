@@ -1,0 +1,29 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+  .submitBtn
+{
+    font-size: 16px;  
+    text-transform: uppercase;
+    line-height: 0;
+    height: 35px;
+    background-color: #244093;
+}
+
+.formPart
+{
+    min-height: 200px;
+}
+
+ .mat-form-field , .mat-option
+{
+    font-size: 17px;
+    font-weight: 500;
+    font-family: 'Varela Round';
+}
