@@ -12,37 +12,54 @@ export class StatusComponent implements OnInit {
   commentSection:any=[];
   commentX:any=[];
   currentID='';
+  commentBtnHeading='See Comments';
 
   ngOnInit() {
+    if(this.backService.loggedIn)
+    {
+      this.commentBtnHeading='Comment';
+    }
    
   }
 
   
   comment(id,key)
   {
-    console.log(key)
+    //console.log(key)
     this.currentID = id;
     this.commentSection[id]=true;
-    console.log(this.backService.commentListShow)
+    //console.log(this.backService.commentListShow);
+    this.backService.totalPages[id]=key.commentCounter;
+    console.log("here we can make changes for the pagination part", this.backService.totalPages[id]);
+
   }
 
-  mainComment(key)
+  //Function for Like
+  onLikeStatus(status)
   {
-    let obj:any = {
-      author:'Bunty',
-      image:'assets/avatar1.svg',
-      time:'21st Sept 2019',
-      comment:this.commentX[this.currentID],
-      id:this.backService.generateID(),
-      isReply:false,
-      commentChildren:[]
-    };
-    key.commentChildren.push(obj)
+    
+    console.log("this status was liked", status);
+    status.like=true;
+    if(status.dislike)
+    {
+      status.dislike=false;
+    }
+    
 
-    console.log("After addition", key);
+  }
+
+  //Function for duisliking status
+  onDislikeStatus(status)
+  {
+   
+    console.log("This status was disliked", status);
+    status.dislike =true;
+    if(status.like)
+    {
+      status.like=false;
+    }
     
-    this.commentX[this.currentID]='';
-    
+
   }
 
 }

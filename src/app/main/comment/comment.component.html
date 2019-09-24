@@ -1,9 +1,12 @@
-<div>
+<div *ngIf='backService.loggedIn'>
                 
-                                <textarea class="mainComment" (keyup.enter) = "commentData(id,commentPart)" [(ngModel)]='str[id]' placeholder="Leave a comment" name='comment'></textarea>
+  <textarea class="mainComment" (keyup.enter) = "commentData(id,commentPart)" [(ngModel)]='str[id]' placeholder="Leave a comment" name='comment'>
+
+  </textarea>
               
 
   </div>
+
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
         <!-- This is the tree node template for leaf nodes -->
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
@@ -13,28 +16,32 @@
             <div class="media">
                     <img class="d-flex mr-3 imgPart" src={{node.image}} alt="Generic placeholder image">
                     <div class="media-body">
-                            <p class="mt-0 font-weight-bold firstLine"> {{node.author}} <span class="timePart"> {{node.time}} </span></p> 
+                            <p class="mt-0 font-weight-bold firstLine"> {{node.author}} <span class="timePart"> {{node.time | date}} 
+
+                            </span></p> 
                             <div class="commentMain">
                                   {{node.comment}}
           
                                   <div class="buttonPart">
-                                          <button mat-button class="likeBtn">
+                                          <button [disabled]='!backService.loggedIn'    mat-button [ngClass]="(node.like==true)?'likeThumb':'likeBtn'" (click)="likeComment(node)">
                                                   <i class="material-icons">
                                                   thumb_up
                                                   </i>
                                           </button>
-                                          <button mat-button class="dislikeBtn">
+                                          <button [disabled]='!backService.loggedIn' mat-button [ngClass]="(node.dislike==true)?'dislikeThumb':'dislikeBtn'"  
+                                          (click)="dislikeComment(node)">
                                                   <i class="material-icons">
                                                   thumb_down
                                                   </i>
                                           </button>
-                                          <button mat-flat-button class="commentBtn" (click)="reply(node)">
-                                                  Reply 
+                                          <button  mat-flat-button class="commentBtn" (click)="reply(node)">
+                                                  {{replyBtnHeading}}
                                           </button>
                                   </div>
                                   <div *ngIf='node.isReply'>
                                                 
-                                <textarea class="replyComment"  (keyup.enter)="commentData(node.id,node)"  placeholder="Leave a comment" [(ngModel)]='str[node.id]' name='comment'></textarea>
+                                <textarea class="replyComment"  (keyup.enter)="commentData(node.id,node)"  placeholder="Leave a comment" 
+                                [(ngModel)]='str[node.id]' name='comment'></textarea>
                                        
 
                                   </div>
@@ -55,26 +62,28 @@
               <div class="media">
                     <img class="d-flex mr-3 imgPart" src={{node.image}} alt="Generic placeholder image">
                     <div class="media-body">
-                            <p class="mt-0 font-weight-bold firstLine"> {{node.author}} <span class="timePart"> {{node.time}} </span></p> 
+                            <p class="mt-0 font-weight-bold firstLine"> {{node.author}} <span class="timePart"> {{node.time | date}} </span></p> 
                             <div class="commentMain">
                                   {{node.comment}}
           
                                   <div class="buttonPart">
-                                          <button mat-button class="likeBtn">
+                                          <button  [disabled]='!backService.loggedIn' mat-button [ngClass]="(node.like==true)?'likeThumb':'likeBtn'" 
+                                          (click)="likeComment(node)">
                                                   <i class="material-icons">
                                                   thumb_up
                                                   </i>
                                           </button>
-                                          <button mat-button class="dislikeBtn">
+                                          <button  [disabled]='!backService.loggedIn' mat-button [ngClass]="(node.dislike==true)?'dislikeThumb':'dislikeBtn'" 
+                                          (click)="dislikeComment(node)">
                                                   <i class="material-icons">
                                                   thumb_down
                                                   </i>
                                           </button>
                                           
                                                  <!--- Reply-->
-                                                  <button mat-icon-button matTreeNodeToggle  class="dropBtn commentBtn"
+                                                  <button  mat-icon-button matTreeNodeToggle  class="dropBtn commentBtn"
                                                   [attr.aria-label]="'toggle ' + node.author" (click)="reply(node)">
-                                                  Reply
+                                                  {{replyBtnHeading}}
                                             <!--<mat-icon class="mat-icon-rtl-mirror">
                                               {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                                             </mat-icon>-->
@@ -86,7 +95,8 @@
                                   <div *ngIf='node.isReply'>
                                                 
                                                 
-                        <textarea class="replyComment"  (keyup.enter)="commentData(node.id,node)" placeholder="Leave a comment" [(ngModel)]='str[node.id]' name='comment' ></textarea>
+                        <textarea class="replyComment"  (keyup.enter)="commentData(node.id,node)" placeholder="Leave a comment" 
+                        [(ngModel)]='str[node.id]' name='comment' ></textarea>
                                                             
                                                               
                                   </div>
@@ -103,15 +113,17 @@
             </ul>
           </li>
           
+          
         </mat-nested-tree-node>
         
       </mat-tree>
 
-
+    
+    
       <div class="pagination">
-                <mat-paginator [length]="10"
-                [pageSize]="5"
-                [hidePageSize]="true"
-              >
-  </mat-paginator>
+          <mat-paginator [length]='backService.totalPages[id]'
+          [pageSize]="5"
+          [hidePageSize]="true"
+          (page)="helloPagination($event)">
+          </mat-paginator>
       </div>

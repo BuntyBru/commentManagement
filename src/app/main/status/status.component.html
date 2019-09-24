@@ -9,18 +9,18 @@
                         </div>
                 </div>
                 <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12 btnSection ">
-                        <button mat-button class="likeBtn">
+                        <button mat-button  [disabled]='!backService.loggedIn' [ngClass]="(key.like==true)?'likeThumb':'likeBtn'" (click)='onLikeStatus(key)'>
                                 <i class="material-icons">
                                 thumb_up
                                 </i>
                         </button>
-                        <button mat-button class="dislikeBtn">
+                        <button mat-button  [disabled]='!backService.loggedIn' [ngClass]="(key.dislike==true)?'dislikeThumb':'dislikeBtn'"  (click)="onDislikeStatus(key)">
                                 <i class="material-icons">
                                 thumb_down
                                 </i>
                         </button>
                         <button mat-flat-button class="commentBtn" (click)="comment(key.id,key)">
-                                Comment
+                                {{commentBtnHeading}}
                         </button>
                         <mat-card class="commentSectionClass" [hidden] = "!commentSection[key.id]">
                                        
@@ -28,6 +28,8 @@
                                 <div class="container">
                                       <app-comment  [id]='key.id' [commentPart]='key'></app-comment>
                                 </div>
+
+                             
 
                         </mat-card>
                    
@@ -42,18 +44,18 @@
                                         </div>
                                 </div>
                                 <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12 ">
-                                        <button mat-button class="likeBtn">
+                                        <button mat-button [disabled]='!backService.loggedIn'  [ngClass]="(key.like==true)?'likeThumb':'likeBtn'" (click)='onLikeStatus(key)'>
                                                 <i class="material-icons">
                                                 thumb_up
                                                 </i>
                                         </button>
-                                        <button mat-button class="dislikeBtn">
+                                        <button mat-button [disabled]='!backService.loggedIn'  [ngClass]="(key.dislike==true)?'dislikeThumb':'dislikeBtn'"  (click)="onDislikeStatus(key)">
                                                 <i class="material-icons">
                                                 thumb_down
                                                 </i>
                                         </button>
                                         <button mat-button class="commentBtn" (click)="comment(key.id,key)">
-                                                Comment
+                                                {{commentBtnHeading}}
                                         </button>
 
                                         <mat-card class="commentSectionClass" [hidden] = "!commentSection[key.id]">
@@ -62,7 +64,8 @@
                                                         <div class="container">
                                                               <app-comment [id]='key.id' [commentPart]='key'></app-comment>
                                                         </div>
-                        
+
+                                                   
                                                 </mat-card>
                                 </div>
                                 </mat-card>

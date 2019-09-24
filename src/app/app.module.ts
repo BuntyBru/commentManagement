@@ -22,6 +22,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {AuthService} from './auth.service';
 
 
 @NgModule({
@@ -44,7 +45,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatDialogModule,MatSelectModule,MatInputModule,MatFormFieldModule,MatSnackBarModule
   ],
   entryComponents: [DialogComponent],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })

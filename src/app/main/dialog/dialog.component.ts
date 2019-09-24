@@ -46,6 +46,9 @@ export class DialogComponent implements OnInit {
           id:this.backService.generateID(),
           heading:form.value.heading,
           imageLink:form.value.image_Link,
+          like:false,
+          dislike:false,
+          commentCounter:0,
           commentChildren:[]
         }
       }
@@ -55,6 +58,9 @@ export class DialogComponent implements OnInit {
           id:this.backService.generateID(),
           heading:form.value.heading,
           story:form.value.mainPart,
+          like:false,
+          dislike:false,
+          commentCounter:0,
           commentChildren:[]
           }
       }

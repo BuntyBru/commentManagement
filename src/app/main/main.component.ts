@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {DialogComponent} from './dialog/dialog.component';
+import {BackService} from '../back.service';
 
 @Component({
   selector: 'app-main',
@@ -11,9 +12,11 @@ export class MainComponent implements OnInit {
   animal: string;
   name: string;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private backService:BackService) { }
 
   ngOnInit() {
+
+    console.log("This user is authenticated",this.backService.loggedIn);
   }
 
   openDialog(): void {
@@ -26,5 +29,10 @@ export class MainComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.animal = result;
     });
+  }
+
+  userLogin()
+  {
+    this.backService.userLogin();
   }
 }
