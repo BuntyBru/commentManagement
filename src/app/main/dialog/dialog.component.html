@@ -16,20 +16,20 @@
         <div class="col-lg-9 col-sm-9 col-md-9 col-xs-9 formPart">
             
 <div *ngIf="formType == 'ns'">
-        <form #statusForm="ngForm" (ngSubmit) = "onSubmit(statusForm)" ngNativeValidate>
+        <form #statusForm="ngForm" (ngSubmit) = "onSubmit(statusForm)" (keyup)='onTextAreaCheck(statusForm)' >
                 <div class="example-container">
                         <mat-form-field>
-                          <input matInput placeholder="Heading" required ngModel name='heading'>
+                          <input matInput placeholder="Heading" required ngModel name='heading' [(ngModel)]='heading' >
                         </mat-form-field>
                       
                         <mat-form-field>
-                          <textarea matInput placeholder="Main Comment" required ngModel name='mainPart'></textarea>
+                          <textarea matInput type='text' placeholder="Main Comment" required [(ngModel)]='mainPart' name='mainPart'></textarea>
                         </mat-form-field>
                       
                                 
                     
                       </div>
-                      <button mat-flat-button [disabled]="!statusForm.form.valid" type="submit" class="submitBtn" color="primary">Submit</button>
+                      <button mat-flat-button [disabled]="formDisabled"  type="submit" class="submitBtn" color="primary">Submit</button>
         </form>
          
 </div>
@@ -38,7 +38,7 @@
         <form #statusForm="ngForm" (ngSubmit) = "onSubmit(statusForm)" ngNativeValidate>
                 <div class="example-container">
                         <mat-form-field>
-                          <input matInput placeholder="Heading" required ngModel name='heading'>
+                          <input matInput placeholder="Heading"  ngModel name='heading'>
                         </mat-form-field>
                       
                         <mat-form-field>

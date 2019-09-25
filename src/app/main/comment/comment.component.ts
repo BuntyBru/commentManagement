@@ -31,8 +31,9 @@ export class CommentComponent implements OnInit {
   commentDo:boolean=true;
   commentX:any=[];
   someVar=new MatTreeNestedDataSource<any>();
-  someArr=[0,1];
   replyBtnHeading='Login to reply';
+  pageIndex:any;
+  lastPageLabel:string;
   constructor(private backService : BackService) {
     
    }
@@ -41,11 +42,8 @@ export class CommentComponent implements OnInit {
     this.backService.statusList.forEach((x)=>{
       if(x.id == this.id)
       {
-
-        this.dataSource.data = x.commentChildren;
-        console.log(this.dataSource.data);
-      ///this.someVar.data = [x.commentChildren[0]]
-       //console.log(this.someVar.data);
+        this.dataSource.data = x.commentChildren[0];
+      
       }
     });
 
@@ -60,9 +58,9 @@ export class CommentComponent implements OnInit {
   {
     if(this.backService.loggedIn)
     {
-    console.log('this is the id', this.id);
+   
     key.isReply=true;
-    console.log(key);
+   
     }
     else
     {
@@ -71,16 +69,28 @@ export class CommentComponent implements OnInit {
     
   }
   hasChild = (_: number, node: any) =>{ 
-   // console.log(node);
-   // console.log(">>>>>>>>>>>>>>>>>>",!!node.commentChildren && node.commentChildren.length > 0)
+   
     return !!node.commentChildren && node.commentChildren.length > 0;
+  }
+
+  //function for refreshing the comment tree
+  refreshTree()
+  {
+    
+    let _data = this.dataSource.data;
+    this.dataSource.data = null;
+    this.dataSource.data = _data;
   }
 
   commentData(id,node)
   {
-   // console.log("Enter clicked",this.str[id],id)
-   console.log(node);
-   console.log(this.id); 
+   if(this.str[id].trim().length==0)
+   {
+     
+     this.str[id]='';
+     return;
+   }
+  
     let obj:any = {
       author:'Bunty',
       image:'assets/avatar1.svg',
@@ -92,27 +102,51 @@ export class CommentComponent implements OnInit {
       isReply:false,
       commentChildren:[]
     };
-    node.commentChildren.push(obj);
-    if(node.commentCounter)
+    if(node.commentCounter >= 0)
     {
       node.commentCounter=node.commentCounter+1;
+      let limit = Math.ceil(node.commentCounter/5)-1;
+      if(node.commentChildren[limit])
+      {
+      node.commentChildren[limit].push(obj);
+      this.backService.statusList.forEach((x)=>{
+        if(x.id == this.id)
+        {
+          this.dataSource.data = x.commentChildren[limit];
+          
+        }
+      });
+     
+      }
+      else
+      {
+        node.commentChildren[limit]=[];
+        node.commentChildren[limit].push(obj);
+        this.backService.statusList.forEach((x)=>{
+          if(x.id == this.id)
+          {
+            this.dataSource.data = x.commentChildren[limit];
+            
+          }
+        });
+        
+      }
+      this.pageIndex=limit;
+      this.backService.totalPages[id]=node.commentCounter;
     }
-    let _data = this.dataSource.data;
-    this.dataSource.data = null;
-    this.dataSource.data = _data; 
+    else
+    {
+      node.commentChildren.push(obj);
+      node.isReply=false;
+    }
+    
+    this.refreshTree();
     this.str[id]='';
-
-  
-   
   }
 
   mainComment()
   {
-    console.log(this.commentX[this.id]);
-    console.log('Comment part', this.commentPart);
     this.commentX[this.id]='';
-
-
     let _data = this.dataSource.data;
     this.dataSource.data = null;
     this.dataSource.data = _data; 
@@ -139,9 +173,18 @@ export class CommentComponent implements OnInit {
 
   }
 
+  //function for Pagination
   helloPagination(event)
   {
-    console.log(event);
+    
+    this.backService.statusList.forEach((x)=>{
+      if(x.id == this.id)
+      {
+        this.dataSource.data = x.commentChildren[event.pageIndex];
+      }
+    });
+
+
   }
 
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BackService} from '../../back.service';
-import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatInput} from '@angular/material';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
@@ -16,28 +16,30 @@ export class DialogComponent implements OnInit {
   formType:string='';
   imageLink:boolean=false;
   imageLinkClass:string='';
+  mainPart:string='';
+  heading:string='';
+  formDisabled:boolean=true;
   constructor(private backService:BackService, public dialogRef: MatDialogRef<DialogComponent>,private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.imageLink=false;
-    console.log("DIALOGUE", this.imageLink);
+    
   }
 
-  selectFormType(item)
+  selectFormType(item,form)
   {
     this.formType=item.value;
+    
   }
 
   onSubmit(form)
   {
-   
     if(!form.valid)
     {
       return;
     }
     else
     {
-      console.log(this.formType,form.value);
       let obj={};
       if(this.formType == 'is')
       {
@@ -71,12 +73,13 @@ export class DialogComponent implements OnInit {
     this.openSnackBar('Status Added','Dismiss');
   }
 
+
   preview(form)
   {
     this.imageLink=true;
-    console.log("this is the link",form.value.image_Link);
   }
 
+  //form validation for image Link
   updateUrl($event,form)
   {
       alert("Image Link broken");
@@ -84,10 +87,26 @@ export class DialogComponent implements OnInit {
       form.controls['image_Link'].reset();
   }
 
+  //function for the status added bottom bar
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000
     });
+  }
+
+  //form Validation for textAreas
+  onTextAreaCheck(entry)
+  {
+     if(entry.value.heading.trim().length == 0 || entry.value.mainPart.trim().length == 0 )
+      {
+        
+        this.formDisabled=true;
+        
+      }
+      else
+      {
+        this.formDisabled=false;
+      }
   }
 
   

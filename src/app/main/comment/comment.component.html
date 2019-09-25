@@ -120,10 +120,12 @@
 
     
     
-      <div class="pagination">
+      <div *ngIf='backService.totalPages[id] > 0' class="pagination">
           <mat-paginator [length]='backService.totalPages[id]'
           [pageSize]="5"
+          [pageIndex]="pageIndex"
+          [lastPageLabel]='lastPageLabel'
           [hidePageSize]="true"
-          (page)="helloPagination($event)">
+          (page)="pageEvent = helloPagination($event)" >
           </mat-paginator>
       </div>

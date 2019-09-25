@@ -14,11 +14,9 @@ export class MainComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private backService:BackService) { }
 
-  ngOnInit() {
+  ngOnInit() {}
 
-    console.log("This user is authenticated",this.backService.loggedIn);
-  }
-
+  //for the create form modal
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '1000px',
@@ -31,6 +29,7 @@ export class MainComponent implements OnInit {
     });
   }
 
+  //user Login
   userLogin()
   {
     this.backService.userLogin();

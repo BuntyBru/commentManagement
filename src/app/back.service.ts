@@ -22,7 +22,8 @@ export class BackService {
       like:false,
       dislike:false,
       commentCounter:2,
-      commentChildren:[
+      commentChildren:[[
+        
         { 
           author:'Matt',
           image:'assets/avatar2.svg',
@@ -72,7 +73,7 @@ export class BackService {
           isReply:false,
           id:'_pguz5k5xr',
           commentChildren:[]
-        }
+        }]
       ]
     },
     {
@@ -84,7 +85,7 @@ export class BackService {
       dislike:false,
       commentCounter:2,
       commentChildren:[
-        { 
+        [{ 
           author:'Alisha',
           image:'assets/avatar11.svg',
           time:Date(),
@@ -121,7 +122,7 @@ export class BackService {
           id:'_mixgz5w8c',
           commentChildren:[]
         }
-      ]
+      ]]
 
     },
     {
@@ -142,7 +143,7 @@ export class BackService {
       dislike:false,
       commentCounter:1,
       story:"A good sportsman ship , Haha",
-      commentChildren:[
+      commentChildren:[[
         { 
           author:'Rohit',
           image:'assets/avatar7.svg',
@@ -155,7 +156,7 @@ export class BackService {
           commentChildren: []
         },
         
-      ]
+      ]]
     },
     {
       type:'small',
@@ -165,7 +166,7 @@ export class BackService {
       dislike:false,
       commentCounter:1,
       story:"Raichu",
-      commentChildren:[
+      commentChildren:[[
         { 
           author:'Arijit',
           image:'assets/avatar8.svg',
@@ -177,7 +178,7 @@ export class BackService {
           id:'_1vg68woyl',
           commentChildren: []
         }
-      ]
+      ]]
     },
     {
       type:'image',
@@ -187,7 +188,8 @@ export class BackService {
       dislike:false,
       commentCounter:10,
       imageLink:"assets/image3.jpg",
-      commentChildren:[{ 
+      commentChildren:[
+        [{ 
         author:'Alan',
         image:'assets/avatar9.svg',
         time:Date(),
@@ -245,8 +247,8 @@ export class BackService {
         isReply:false,
         id:'_3xf39pr56',
         commentChildren:[]
-      },
-      {
+      }],
+      [{
             
         author:'Martin',
         image:'assets/avatar10.svg',
@@ -305,7 +307,7 @@ export class BackService {
         isReply:false,
         id:'_glr0y5ajx',
         commentChildren:[]
-      }]
+      }]]
     }
   ];
 
@@ -318,7 +320,7 @@ export class BackService {
     return '_' + Math.random().toString(36).substr(2, 9);
   }
   
-
+//checking whether the user is authenticated or not 
   isAuthenticated()
   {
     const promise = new Promise((resolve,reject)=>{
